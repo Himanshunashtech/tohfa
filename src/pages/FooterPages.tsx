@@ -3,7 +3,6 @@ import { Briefcase, Heart, Globe, Users, Gift, ShieldCheck, MapPin, ArrowRight, 
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -19,7 +18,6 @@ export const Careers = () => (
       <div className="bg-foreground text-background py-32 px-6 text-center relative">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.1 }} className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center" />
         <div className="container mx-auto max-w-3xl relative z-10">
-          <Breadcrumbs />
           <h1 className="text-5xl md:text-7xl font-heading font-bold mb-6">Build the Future of <span className="text-primary italic">Gifting</span></h1>
           <p className="text-lg md:text-xl text-background/70 mb-10">We're looking for thinkers, creators, and doers to help us craft meaningful connections across the globe.</p>
           <Button size="lg" className="rounded-full px-12 h-14 bg-primary text-primary-foreground font-bold hover:scale-105 transition-transform">View Open Positions</Button>
@@ -277,7 +275,6 @@ export const Sustainability = () => (
           className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-60 grayscale-[0.1]"
         />
         <div className="container mx-auto max-w-4xl relative z-10">
-          <Breadcrumbs />
           <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -315,7 +312,6 @@ export const Artisans = () => {
       <StickyNav />
       <main className="pt-24 pb-20">
         <div className="container mx-auto max-w-6xl px-6 py-20">
-          <Breadcrumbs />
           <div className="max-w-3xl mb-24">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/5 border border-primary/10 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary mb-4">
               <Heart size={12} /> Supporting Local Economy
@@ -387,7 +383,7 @@ export const Artisans = () => {
                 <Link to="/sustainability">
                   <Button size="lg" className="rounded-full h-14 px-10 bg-primary font-bold">Our Impact Report</Button>
                 </Link>
-                <Link to="/bulk-gifting">
+                <Link to="/">
                   <Button variant="outline" className="rounded-full h-14 px-10 border-background/20 text-background hover:bg-background hover:text-foreground font-bold">Artisan Partnerships</Button>
                 </Link>
               </div>
@@ -420,7 +416,6 @@ export const BulkGifting = () => {
       <StickyNav />
       <main className="pt-24 pb-20">
         <div className="container mx-auto max-w-6xl px-6 py-20">
-          <Breadcrumbs />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="space-y-10">
               <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight uppercase italic">
@@ -467,12 +462,12 @@ export const BulkGifting = () => {
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4 translate-y-12">
-                  <img src="https://images.unsplash.com/photo-1549463591-24c1882bd396?q=80&w=800" className="rounded-3xl h-64 w-full object-cover shadow-xl" />
-                  <img src="https://images.unsplash.com/photo-1512909006721-3d6018887183?q=80&w=800" className="rounded-3xl h-80 w-full object-cover shadow-xl" />
+                  <img src="https://images.unsplash.com/photo-1671749999622-4087a86868cc?fm=jpg&q=60&w=3000&auto=format&fit=crop" className="rounded-3xl h-64 w-full object-cover shadow-xl" />
+                  <img src="https://plus.unsplash.com/premium_photo-1671050579489-77c1c0b43546?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0" className="rounded-3xl h-80 w-full object-cover shadow-xl" />
                 </div>
                 <div className="space-y-4">
                   <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=800" className="rounded-3xl h-80 w-full object-cover shadow-xl" />
-                  <img src="https://images.unsplash.com/photo-1512418490979-92798ccc13b0?q=80&w=800" className="rounded-3xl h-64 w-full object-cover shadow-xl" />
+                  <img src="https://images.unsplash.com/photo-1545844568-98bb15133ec0?fm=jpg&q=60&w=3000&auto=format&fit=crop" className="rounded-3xl h-64 w-full object-cover shadow-xl" />
                 </div>
               </div>
             </div>
@@ -539,7 +534,6 @@ export const Ethics = () => (
       <section className="bg-slate-50 py-32 px-6 border-b border-slate-100 relative">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <Breadcrumbs />
           <h1 className="text-5xl md:text-8xl font-heading font-bold mb-8 italic">The Art of <span className="text-primary not-italic underline decoration-primary/20 underline-offset-[12px]">Responsibility</span></h1>
           <p className="text-xl md:text-2xl text-slate-600 font-light leading-relaxed max-w-2xl mx-auto">
             "Every purchase directly supports our community of certified independent artisans."
@@ -551,71 +545,71 @@ export const Ethics = () => (
       <section className="py-40 bg-white">
         <div className="container mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-             <motion.div 
-               initial={{ opacity: 0, x: -50 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true }}
-               className="relative"
-             >
-                <div className="rounded-[4rem] overflow-hidden aspect-[4/5] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-100">
-                   <img src="https://images.unsplash.com/photo-1549463591-24c1882bd396?q=80&w=2000" className="w-full h-full object-cover" alt="Julian Kross at Work" />
-                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none" />
-                   <div className="absolute top-10 left-10 flex flex-col gap-3">
-                      <div className="bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary shadow-xl w-fit">
-                        Master Artisan
-                      </div>
-                      <div className="bg-slate-900/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-white shadow-xl w-fit">
-                        Hand-Signed
-                      </div>
-                   </div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="rounded-[4rem] overflow-hidden aspect-[4/5] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border border-slate-100">
+                <img src="https://images.unsplash.com/photo-1549463591-24c1882bd396?q=80&w=2000" className="w-full h-full object-cover" alt="Julian Kross at Work" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute top-10 left-10 flex flex-col gap-3">
+                  <div className="bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary shadow-xl w-fit">
+                    Master Artisan
+                  </div>
+                  <div className="bg-slate-900/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-white shadow-xl w-fit">
+                    Hand-Signed
+                  </div>
                 </div>
-                <div className="absolute -bottom-10 -right-10 bg-white p-8 rounded-[3rem] shadow-2xl border border-slate-100 max-w-[280px] hidden md:block">
-                   <p className="text-primary text-[10px] font-bold uppercase tracking-widest mb-1 font-heading">Geological Craftsman</p>
-                   <h3 className="text-2xl font-bold text-slate-900 leading-tight">Julian Kross</h3>
-                   <p className="text-muted-foreground text-xs font-medium uppercase tracking-tight mt-1 flex items-center gap-1.5 leading-none">
-                      <MapPin size={12} /> Reykjavik, Iceland
-                   </p>
-                </div>
-             </motion.div>
+              </div>
+              <div className="absolute -bottom-10 -right-10 bg-white p-8 rounded-[3rem] shadow-2xl border border-slate-100 max-w-[280px] hidden md:block">
+                <p className="text-primary text-[10px] font-bold uppercase tracking-widest mb-1 font-heading">Geological Craftsman</p>
+                <h3 className="text-2xl font-bold text-slate-900 leading-tight">Julian Kross</h3>
+                <p className="text-muted-foreground text-xs font-medium uppercase tracking-tight mt-1 flex items-center gap-1.5 leading-none">
+                  <MapPin size={12} /> Reykjavik, Iceland
+                </p>
+              </div>
+            </motion.div>
 
-             <motion.div 
-               initial={{ opacity: 0, x: 50 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true }}
-               className="space-y-10"
-             >
-                <div className="space-y-4">
-                  <h2 className="text-4xl md:text-6xl font-heading font-bold text-slate-900 leading-none">The <span className="text-primary italic">Maker</span> Behind the Craft</h2>
-                  <p className="text-xl md:text-2xl text-slate-600 leading-relaxed font-light italic">
-                    "Julian works exclusively with volcanic materials, bridging the gap between raw earth and refined luxury."
-                  </p>
-                </div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-10"
+            >
+              <div className="space-y-4">
+                <h2 className="text-4xl md:text-6xl font-heading font-bold text-slate-900 leading-none">The <span className="text-primary italic">Maker</span> Behind the Craft</h2>
+                <p className="text-xl md:text-2xl text-slate-600 leading-relaxed font-light italic">
+                  "Julian works exclusively with volcanic materials, bridging the gap between raw earth and refined luxury."
+                </p>
+              </div>
 
-                <div className="space-y-6 pt-6">
-                   <div className="flex gap-6">
-                      <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center shrink-0 shadow-sm border border-emerald-100"><ShieldCheck size={28} /></div>
-                      <div>
-                         <h4 className="font-bold text-lg mb-1 leading-none">Certified Independence</h4>
-                         <p className="text-slate-500 text-sm leading-relaxed font-light">We verify every workshop to ensure fair wages and dignified working conditions for all our creators.</p>
-                      </div>
-                   </div>
-                   <div className="flex gap-6">
-                      <div className="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center shrink-0 shadow-sm border border-primary/20"><Heart size={28} /></div>
-                      <div>
-                         <h4 className="font-bold text-lg mb-1 leading-none">Heritage Preservation</h4>
-                         <p className="text-slate-500 text-sm leading-relaxed font-light">Supporting artisans like Julian helps keep centuries-old geological crafting techniques alive for future generations.</p>
-                      </div>
-                   </div>
+              <div className="space-y-6 pt-6">
+                <div className="flex gap-6">
+                  <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center shrink-0 shadow-sm border border-emerald-100"><ShieldCheck size={28} /></div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-1 leading-none">Certified Independence</h4>
+                    <p className="text-slate-500 text-sm leading-relaxed font-light">We verify every workshop to ensure fair wages and dignified working conditions for all our creators.</p>
+                  </div>
                 </div>
+                <div className="flex gap-6">
+                  <div className="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center shrink-0 shadow-sm border border-primary/20"><Heart size={28} /></div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-1 leading-none">Heritage Preservation</h4>
+                    <p className="text-slate-500 text-sm leading-relaxed font-light">Supporting artisans like Julian helps keep centuries-old geological crafting techniques alive for future generations.</p>
+                  </div>
+                </div>
+              </div>
 
-                <div className="pt-10 flex flex-wrap gap-4">
-                   <Link to="/artisans">
-                      <Button className="h-16 rounded-full px-10 bg-primary font-bold text-lg hover:scale-105 transition-transform tracking-tight text-white group gap-2">
-                        View All Makers <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                   </Link>
-                </div>
-             </motion.div>
+              <div className="pt-10 flex flex-wrap gap-4">
+                <Link to="/artisans">
+                  <Button className="h-16 rounded-full px-10 bg-primary font-bold text-lg hover:scale-105 transition-transform tracking-tight text-white group gap-2">
+                    View All Makers <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -623,39 +617,39 @@ export const Ethics = () => (
       {/* Core Ethics Statement */}
       <section className="py-40 bg-slate-50 text-slate-900">
         <div className="container mx-auto max-w-4xl px-6 text-center">
-           <h2 className="text-4xl md:text-7xl font-heading font-bold mb-12 italic leading-none">Our Promise <span className="text-primary font-light not-italic">to You</span></h2>
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-              {[
-                { title: "Transparency First", desc: "No hidden supply chains. We trace every material back to its ethical origin." },
-                { title: "Artisan First", desc: "Our profit-sharing models ensure artisans receive the majority value of their craftsmanship." },
-                { title: "Planet First", desc: "Sustainability is not an option; it's the foundation of our material selection." },
-                { title: "Community First", desc: "We invest 10% of our annual revenue back into local artisan education programs." }
-              ].map((p, i) => (
-                <div key={i} className="p-10 bg-white rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-xl hover:border-primary/20 transition-all group">
-                   <p className="text-primary font-bold text-[10px] uppercase tracking-widest mb-3 opacity-60">Principle {i + 1}</p>
-                   <h4 className="text-xl font-bold mb-3">{p.title}</h4>
-                   <p className="text-slate-500 text-sm leading-relaxed font-light">{p.desc}</p>
-                </div>
-              ))}
-           </div>
+          <h2 className="text-4xl md:text-7xl font-heading font-bold mb-12 italic leading-none">Our Promise <span className="text-primary font-light not-italic">to You</span></h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+            {[
+              { title: "Transparency First", desc: "No hidden supply chains. We trace every material back to its ethical origin." },
+              { title: "Artisan First", desc: "Our profit-sharing models ensure artisans receive the majority value of their craftsmanship." },
+              { title: "Planet First", desc: "Sustainability is not an option; it's the foundation of our material selection." },
+              { title: "Community First", desc: "We invest 10% of our annual revenue back into local artisan education programs." }
+            ].map((p, i) => (
+              <div key={i} className="p-10 bg-white rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-xl hover:border-primary/20 transition-all group">
+                <p className="text-primary font-bold text-[10px] uppercase tracking-widest mb-3 opacity-60">Principle {i + 1}</p>
+                <h4 className="text-xl font-bold mb-3">{p.title}</h4>
+                <p className="text-slate-500 text-sm leading-relaxed font-light">{p.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-40 bg-white container mx-auto px-6 text-center">
-         <div className="max-w-3xl mx-auto space-y-12">
-            <h2 className="text-4xl md:text-6xl font-heading font-bold italic leading-tight text-slate-900">
-               Support <span className="text-primary not-italic">Ethical Luxury</span> Today.
-            </h2>
-            <div className="flex flex-wrap justify-center gap-6">
-               <Link to="/shop">
-                  <Button size="lg" className="h-16 rounded-full px-12 bg-primary font-bold text-lg hover:scale-110 transition-all font-heading tracking-tight shadow-2xl shadow-primary/30">Shop the Collections</Button>
-               </Link>
-               <Link to="/artisans">
-                  <Button variant="outline" size="lg" className="h-16 rounded-full px-12 border-slate-200 text-slate-900 font-bold text-lg hover:bg-slate-50 transition-all font-heading tracking-tight">Meet the Artisans</Button>
-               </Link>
-            </div>
-         </div>
+        <div className="max-w-3xl mx-auto space-y-12">
+          <h2 className="text-4xl md:text-6xl font-heading font-bold italic leading-tight text-slate-900">
+            Support <span className="text-primary not-italic">Ethical Luxury</span> Today.
+          </h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link to="/shop">
+              <Button size="lg" className="h-16 rounded-full px-12 bg-primary font-bold text-lg hover:scale-110 transition-all font-heading tracking-tight shadow-2xl shadow-primary/30">Shop the Collections</Button>
+            </Link>
+            <Link to="/artisans">
+              <Button variant="outline" size="lg" className="h-16 rounded-full px-12 border-slate-200 text-slate-900 font-bold text-lg hover:bg-slate-50 transition-all font-heading tracking-tight">Meet the Artisans</Button>
+            </Link>
+          </div>
+        </div>
       </section>
     </main>
     <FooterSection />

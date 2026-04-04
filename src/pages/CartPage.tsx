@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { getProductImage } from "@/lib/utils";
 
@@ -18,7 +17,6 @@ const CartPage = () => {
       <StickyNav />
       <main className="pt-32 pb-20 bg-muted/30 min-h-screen">
         <div className="container mx-auto max-w-6xl px-6">
-          <Breadcrumbs />
           <h1 className="font-heading text-4xl md:text-5xl font-bold mb-10">Shopping Bag</h1>
 
           {items.length === 0 ? (

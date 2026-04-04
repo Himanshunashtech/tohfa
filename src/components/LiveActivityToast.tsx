@@ -47,10 +47,10 @@ const LiveActivityToast = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, x: -100, scale: 0.8 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: -100, scale: 0.8 }}
-          className="fixed bottom-10 left-10 z-[100] max-w-sm pointer-events-auto"
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 50, scale: 0.9 }}
+          className="fixed bottom-6 left-4 right-4 md:right-auto md:left-10 md:bottom-10 z-[100] w-auto max-w-[calc(100vw-2rem)] md:max-w-sm pointer-events-auto"
         >
           <div className="bg-background/80 backdrop-blur-xl border border-white/20 p-5 rounded-[2rem] shadow-2xl flex items-center gap-4 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-full blur-xl -translate-x-1/2 -translate-y-1/2" />

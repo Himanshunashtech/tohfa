@@ -14,17 +14,32 @@ const HeroSection = () => {
   const { data: collections } = useGetCollectionsQuery();
 
   const heroContent = useMemo(() => {
-    const hero = cmsData?.find(item => item.section_key === 'home_hero')?.content;
+    const now = Date.now();
+    const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
+    // 1. Check CMS Override
+    const heroEntry = cmsData?.find(item => item.section_key === 'home_hero');
+    const hero = heroEntry?.content;
+    const cmsUpdatedAt = heroEntry?.updated_at;
+    const isCmsValid = cmsUpdatedAt ? (now - new Date(cmsUpdatedAt).getTime()) < ONE_DAY_MS : false;
+
+    // 2. Check Autonomous Selection
     const autonomousHero = getAutonomousHeroSelection(collections || []);
-    
+    const autoTime = autonomousHero?.updated_at || autonomousHero?.created_at;
+    const isAutoValid = autoTime ? (now - new Date(autoTime).getTime()) < ONE_DAY_MS : false;
+
+    // Original Heritage Text (The Fallback)
+    const originalTitle = "Elevating The Art Of Generosity";
+    const originalSubtitle = "TofhaVerse is where master craftsmanship meets white-glove logistics. Discover gifts that leave an enduring legacy.";
+
     return {
-      title: hero?.title || autonomousHero?.name || "Elevating The Art Of Generosity",
-      subtitle: hero?.subtitle || autonomousHero?.description || "TofhaVerse is where master craftsmanship meets white-glove logistics. Discover gifts that leave an enduring legacy.",
-      ctaPrimary: hero?.cta_primary || "Begin Curating",
-      ctaPrimaryLink: hero?.cta_primary_link || (autonomousHero ? `/collections/${autonomousHero.slug}` : "/shop"),
-      ctaSecondary: hero?.cta_secondary || "Meet the Makers",
-      ctaSecondaryLink: hero?.cta_secondary_link || "/artisans",
-      image: hero?.image || autonomousHero?.banner_image || heroImg
+      title: isCmsValid ? (hero?.title || originalTitle) : (isAutoValid ? (autonomousHero?.name || originalTitle) : originalTitle),
+      subtitle: isCmsValid ? (hero?.subtitle || originalSubtitle) : (isAutoValid ? (autonomousHero?.description || originalSubtitle) : originalSubtitle),
+      ctaPrimary: isCmsValid ? (hero?.cta_primary || "Begin Curating") : (isAutoValid ? "Explore Collection" : "Begin Curating"),
+      ctaPrimaryLink: isCmsValid ? (hero?.cta_primary_link || "/shop") : (isAutoValid && autonomousHero ? `/collections/${autonomousHero.slug}` : "/shop"),
+      ctaSecondary: isCmsValid ? (hero?.cta_secondary || "Meet the Makers") : "Meet the Makers",
+      ctaSecondaryLink: isCmsValid ? (hero?.cta_secondary_link || "/artisans") : "/artisans",
+      image: isCmsValid ? (hero?.image || heroImg) : (isAutoValid && autonomousHero?.banner_image ? autonomousHero.banner_image : heroImg)
     };
   }, [cmsData, collections]);
 

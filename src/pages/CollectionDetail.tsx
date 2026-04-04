@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ProductCard";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { useAdminData } from "@/context/AdminDataContext";
 import { getProductImage } from "@/lib/utils";
 
@@ -131,9 +130,6 @@ const CollectionDetail = () => {
 
       {/* Products Section */}
       <section className="py-24 container px-6">
-        <div className="mb-12">
-           <Breadcrumbs />
-        </div>
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 px-2">
           <div className="space-y-2">

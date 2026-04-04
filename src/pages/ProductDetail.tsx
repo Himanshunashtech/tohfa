@@ -11,7 +11,6 @@ import StickyNav from "@/components/StickyNav";
 import PageTransition from "@/components/PageTransition";
 import FooterSection from "@/components/FooterSection";
 import ReviewList from "@/components/ReviewList";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import ArtisanCard from "@/components/ArtisanCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -102,7 +101,6 @@ const ProductDetail = () => {
     <PageTransition title={product.name} description={product.shortDesc}>
       <StickyNav />
       <main className="pt-24 pb-16">
-        <Breadcrumbs />
 
         <div className="container mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">

@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +40,6 @@ const Contact = () => {
       <StickyNav />
       <main className="pt-32 pb-20 overflow-hidden">
         <div className="container mx-auto max-w-6xl px-6">
-          <Breadcrumbs />
           <div className="text-center mb-20 max-w-3xl mx-auto">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}

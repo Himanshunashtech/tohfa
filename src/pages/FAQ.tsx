@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 const faqs = [
   {
@@ -82,7 +81,6 @@ const FAQ = () => {
       <StickyNav />
       <main className="pt-32 pb-20">
         <div className="container mx-auto max-w-4xl px-6">
-          <Breadcrumbs />
           <div className="text-center mb-16">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}

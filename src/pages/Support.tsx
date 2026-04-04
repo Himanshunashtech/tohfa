@@ -34,7 +34,6 @@ import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { useAdminData } from "@/context/AdminDataContext";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
@@ -120,7 +119,6 @@ const Support = () => {
       <StickyNav />
       <main className="pt-32 pb-20 overflow-hidden">
         <div className="container mx-auto px-6 max-w-6xl">
-          <Breadcrumbs />
           
           {/* Hero Section */}
           <div className="relative mb-16 text-center">

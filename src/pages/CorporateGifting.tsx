@@ -95,19 +95,19 @@ const CorporateGifting = () => {
   return (
     <PageTransition title="Corporate Gifting" description="Elevate your business relationships with premium bulk gifting solutions.">
       {!isMobile && <StickyNav />}
-      
+
       {isMobile && (
         <div className="fixed top-0 left-0 right-0 z-[60] bg-background/80 backdrop-blur-xl border-b border-border/10 p-4 flex items-center justify-between">
-           <Link to="/" className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-foreground">
-              <ChevronLeft size={20} />
-           </Link>
-           <div className="text-center">
-              <h3 className="text-sm font-heading font-black italic">TofhaVerse</h3>
-              <p className="text-[8px] uppercase tracking-widest font-bold text-primary">Corporate Solutions</p>
-           </div>
-           <Button variant="ghost" size="icon" onClick={() => setIsCatalogOpen(true)} className="rounded-full">
-              <Star size={18} className="text-primary" />
-           </Button>
+          <Link to="/" className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-foreground">
+            <ChevronLeft size={20} />
+          </Link>
+          <div className="text-center">
+            <h3 className="text-sm font-heading font-black italic">TofhaVerse</h3>
+            <p className="text-[8px] uppercase tracking-widest font-bold text-primary">Corporate Solutions</p>
+          </div>
+          <Button variant="ghost" size="icon" onClick={() => setIsCatalogOpen(true)} className="rounded-full">
+            <Star size={18} className="text-primary" />
+          </Button>
         </div>
       )}
 
@@ -340,9 +340,9 @@ const CorporateGifting = () => {
           <div className="container mx-auto px-6">
             <p className="text-center text-[10px] font-bold uppercase tracking-[0.4em] text-muted-foreground/50 mb-8">Trusted by global visionaries</p>
             <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
-               {["LUMIA", "AETHER", "VELOCITY", "NEXUS", "ORION"].map((brand) => (
-                 <span key={brand} className="text-2xl font-heading font-black tracking-tighter">{brand}</span>
-               ))}
+              {["LUMIA", "AETHER", "VELOCITY", "NEXUS", "ORION"].map((brand) => (
+                <span key={brand} className="text-2xl font-heading font-black tracking-tighter">{brand}</span>
+              ))}
             </div>
           </div>
         </section>
@@ -351,90 +351,90 @@ const CorporateGifting = () => {
         <section className="py-24 px-6">
           <div className="container mx-auto max-w-6xl">
             <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
-               <div className="max-w-2xl">
-                  <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em] mb-4 block">Visual Inspiration</span>
-                  <h2 className="text-4xl md:text-5xl font-heading font-bold italic leading-tight">Masterpieces in <span className="text-primary not-italic">Bulk</span> Gifting.</h2>
-               </div>
-               <Link to="/collections">
-                  <Button variant="link" className="text-foreground font-bold flex items-center gap-2 group">
-                    Explore all collections <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </Button>
-               </Link>
+              <div className="max-w-2xl">
+                <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em] mb-4 block">Visual Inspiration</span>
+                <h2 className="text-4xl md:text-5xl font-heading font-bold italic leading-tight">Masterpieces in <span className="text-primary not-italic">Bulk</span> Gifting.</h2>
+              </div>
+              <Link to="/collections">
+                <Button variant="link" className="text-foreground font-bold flex items-center gap-2 group">
+                  Explore all collections <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
 
             <div className={`grid grid-cols-1 ${isMobile ? "gap-4" : "md:grid-cols-12 gap-6 md:h-[1000px]"}`}>
-               {/* Large Featured Kit */}
-               <motion.div 
-                 whileHover={{ y: -10 }}
-                 className={`${isMobile ? "h-[500px]" : "md:col-span-8 md:row-span-1"} relative group rounded-[3rem] overflow-hidden shadow-xl`}
-               >
-                  <img 
-                    src="https://images.unsplash.com/photo-1549463591-24c1882bd396?q=80&w=1200" 
-                    alt="Corporate Luxury Kit" 
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute bottom-10 left-10 text-white max-w-md">
-                     <div className="inline-block px-3 py-1 bg-primary rounded-full text-[9px] font-bold uppercase tracking-widest mb-3">Holiday VIP 2024</div>
-                     <h3 className="text-3xl font-heading font-bold italic mb-4">The Executive Connoisseur Kit</h3>
-                     <p className="text-sm text-white/70 leading-relaxed italic">
-                        "Curated for the senior leadership of Lumia Corp, featuring 12-year batch truffles and hand-pressed leather journals."
-                     </p>
-                  </div>
-               </motion.div>
+              {/* Large Featured Kit */}
+              <motion.div
+                whileHover={{ y: -10 }}
+                className={`${isMobile ? "h-[500px]" : "md:col-span-8 md:row-span-1"} relative group rounded-[3rem] overflow-hidden shadow-xl`}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1625552187571-7ee60ac43d2b?fm=jpg&q=60&w=3000&auto=format&fit=crop"
+                  alt="Corporate Luxury Kit"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-10 left-10 text-white max-w-md">
+                  <div className="inline-block px-3 py-1 bg-primary rounded-full text-[9px] font-bold uppercase tracking-widest mb-3">Holiday VIP 2024</div>
+                  <h3 className="text-3xl font-heading font-bold italic mb-4">The Executive Connoisseur Kit</h3>
+                  <p className="text-sm text-white/70 leading-relaxed italic">
+                    "Curated for the senior leadership of Lumia Corp, featuring 12-year batch truffles and hand-pressed leather journals."
+                  </p>
+                </div>
+              </motion.div>
 
-               {/* Tall Artisan Box */}
-               <motion.div 
-                 whileHover={{ y: -10 }}
-                 className="md:col-span-4 md:row-span-1 relative group rounded-[3rem] overflow-hidden shadow-xl"
-               >
-                  <img 
-                    src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=1000" 
-                    alt="Employee Welcome Box" 
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-8 left-8 text-white">
-                     <h4 className="text-xl font-bold mb-1 italic">Artisan Welcome Sets</h4>
-                     <p className="text-[10px] text-white/60 uppercase tracking-widest font-bold">500+ Delivered</p>
-                  </div>
-               </motion.div>
+              {/* Tall Artisan Box */}
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="md:col-span-4 md:row-span-1 relative group rounded-[3rem] overflow-hidden shadow-xl"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=1000"
+                  alt="Employee Welcome Box"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-8 left-8 text-white">
+                  <h4 className="text-xl font-bold mb-1 italic">Artisan Welcome Sets</h4>
+                  <p className="text-[10px] text-white/60 uppercase tracking-widest font-bold">500+ Delivered</p>
+                </div>
+              </motion.div>
 
-               {/* Wellness Hamper */}
-               <motion.div 
-                 whileHover={{ y: -10 }}
-                 className="md:col-span-4 md:row-span-1 relative group rounded-[3rem] overflow-hidden shadow-xl h-[400px] md:h-auto"
-               >
-                  <img 
-                    src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1000" 
-                    alt="Wellness Retreat Gifting" 
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-8 left-8 text-white">
-                     <h4 className="text-xl font-bold mb-1 italic">Zen Ritual Boxes</h4>
-                     <p className="text-[10px] text-white/60 uppercase tracking-widest font-bold">Wellness Retreats</p>
-                  </div>
-               </motion.div>
+              {/* Wellness Hamper */}
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="md:col-span-4 md:row-span-1 relative group rounded-[3rem] overflow-hidden shadow-xl h-[400px] md:h-auto"
+              >
+                <img
+                  src="https://plus.unsplash.com/premium_photo-1667430128008-1d6afc3e01f5?fm=jpg&q=60&w=3000&auto=format&fit=crop"
+                  alt="Wellness Retreat Gifting"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-8 left-8 text-white">
+                  <h4 className="text-xl font-bold mb-1 italic">Zen Ritual Boxes</h4>
+                  <p className="text-[10px] text-white/60 uppercase tracking-widest font-bold">Wellness Retreats</p>
+                </div>
+              </motion.div>
 
-               {/* Custom Branded Accents */}
-               <motion.div 
-                 whileHover={{ y: -10 }}
-                 className="md:col-span-8 md:row-span-1 relative group rounded-[3rem] overflow-hidden shadow-xl h-[400px] md:h-auto"
-               >
-                  <img 
-                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200" 
-                    alt="Branded Artisan Goods" 
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-10 right-10 text-right text-white max-w-sm">
-                     <h3 className="text-2xl font-heading font-bold italic mb-2 leading-tight">Branded To <span className="text-primary not-italic">Perfection</span>.</h3>
-                     <p className="text-xs text-white/70 italic leading-relaxed">
-                        Every artisan piece can be engraved or foil-stamped with your company identity, ensuring a lasting impression.
-                     </p>
-                  </div>
-               </motion.div>
+              {/* Custom Branded Accents */}
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="md:col-span-8 md:row-span-1 relative group rounded-[3rem] overflow-hidden shadow-xl h-[400px] md:h-auto"
+              >
+                <img
+                  src="https://plus.unsplash.com/premium_photo-1696863129668-03948ed00909?fm=jpg&q=60&w=3000&auto=format&fit=crop"
+                  alt="Branded Artisan Goods"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-10 right-10 text-right text-white max-w-sm">
+                  <h3 className="text-2xl font-heading font-bold italic mb-2 leading-tight">Branded To <span className="text-primary not-italic">Perfection</span>.</h3>
+                  <p className="text-xs text-white/70 italic leading-relaxed">
+                    Every artisan piece can be engraved or foil-stamped with your company identity, ensuring a lasting impression.
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>

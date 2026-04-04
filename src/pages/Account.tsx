@@ -32,7 +32,6 @@ import {
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import AccountRewards from "@/components/AccountRewards";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -237,7 +236,6 @@ const Account = () => {
       <StickyNav />
       <main className="pt-32 pb-20 bg-muted/30 min-h-screen">
         <div className="container mx-auto max-w-6xl px-6">
-          <Breadcrumbs />
           <div className="flex flex-col md:flex-row gap-8">
             {/* Sidebar - Hidden on mobile if a tab is active */}
             {!isMobile && (

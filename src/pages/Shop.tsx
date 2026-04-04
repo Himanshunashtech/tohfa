@@ -8,7 +8,6 @@ import StickyNav from "@/components/StickyNav";
 import { useAdminData } from "@/context/AdminDataContext";
 import FooterSection from "@/components/FooterSection";
 import PageTransition from "@/components/PageTransition";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { ProductGridSkeleton } from "@/components/SkeletonLoader";
 import ProductCard from "@/components/ProductCard";
 import { Magnetic } from "@/components/Magnetic";
@@ -103,7 +102,6 @@ const Shop = () => {
       <StickyNav />
       <main className="pt-24 pb-20 bg-muted/20 min-h-screen">
         <div className="container mx-auto max-w-7xl px-6">
-          <Breadcrumbs />
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>

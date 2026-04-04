@@ -3,14 +3,12 @@ import { Heart, ShieldCheck, Globe, Users } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 const About = () => {
   return (
     <PageTransition title="Our Story" description="Learn about Tofhaverse's mission and artisan partners.">
       <StickyNav />
       <main className="pt-32 pb-20">
-        <Breadcrumbs />
         {/* Hero Section */}
         <section className="container mx-auto max-w-6xl px-6 text-center mb-24">
           <motion.span

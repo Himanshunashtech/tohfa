@@ -26,7 +26,7 @@ const GiftingHeartbeat = () => {
     }[activity.icon as keyof typeof Icon] || Sparkles;
 
     toast.custom((t) => (
-      <div className="bg-background/80 backdrop-blur-xl border border-white/20 p-4 rounded-3xl shadow-2xl flex items-center gap-4 max-w-sm animate-in slide-in-from-bottom-5">
+      <div className="bg-background/80 backdrop-blur-xl border border-white/20 p-4 rounded-3xl shadow-2xl flex items-center gap-4 w-auto max-w-[calc(100vw-2rem)] md:max-w-sm animate-in slide-in-from-bottom-5">
         <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
            <Icon className="text-primary" size={20} />
         </div>

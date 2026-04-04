@@ -5,7 +5,6 @@ import { useAdminData } from "@/context/AdminDataContext";
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -35,7 +34,6 @@ const Rewards = () => {
       <StickyNav />
       <main className="pt-24 overflow-hidden bg-background">
         <div className="bg-foreground text-background py-4">
-          <Breadcrumbs />
         </div>
         {/* Hero Section */}
         <section className="relative h-[80vh] flex items-center justify-center bg-foreground text-background">

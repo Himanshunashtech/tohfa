@@ -9,11 +9,11 @@ const FooterSection = () => {
   const [sent, setSent] = useState(false);
 
   const { data: cmsData } = useGetSiteContentQuery();
-  
+
   const footerContent = useMemo(() => {
     const footer = cmsData?.find(item => item.section_key === 'footer_info')?.content;
     return {
-      email: footer?.email || "concierge@tofhaverse.com",
+      email: footer?.email || "co@tofhaverse.com",
       phone: footer?.phone || "+91 9876543210",
       copyright: footer?.copyright || `© ${new Date().getFullYear()} Tofhaverse. All rights reserved.`
     };
@@ -105,9 +105,9 @@ const FooterSection = () => {
               <a href="#" className="text-primary-foreground/60 hover:text-primary transition-colors"><Facebook size={20} /></a>
             </div>
             <div className="mt-8 pt-4 border-t border-primary-foreground/10">
-               <p className="text-[10px] uppercase tracking-widest text-primary-foreground/40 mb-2">Concierge</p>
-               <p className="text-sm font-medium">{footerContent.email}</p>
-               <p className="text-sm font-medium">{footerContent.phone}</p>
+              <p className="text-[10px] uppercase tracking-widest text-primary-foreground/40 mb-2">Concierge</p>
+              <p className="text-sm font-medium">{footerContent.email}</p>
+              <p className="text-sm font-medium">{footerContent.phone}</p>
             </div>
           </div>
         </div>

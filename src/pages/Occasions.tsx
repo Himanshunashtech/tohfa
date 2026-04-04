@@ -8,7 +8,6 @@ import WishlistButton from "@/components/WishlistButton";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
 import PageTransition from "@/components/PageTransition";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { getProductImage } from "@/lib/utils";
 import birthdayImg from "@/assets/occasion-birthday.jpg";
 import anniversaryImg from "@/assets/occasion-anniversary.jpg";
@@ -33,7 +32,6 @@ const Occasions = () => {
       <StickyNav />
       <main className="pt-24 pb-20">
         <div className="container mx-auto max-w-6xl px-6">
-          <Breadcrumbs />
           <div className="mb-12">
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground">
               Shop by Occasion

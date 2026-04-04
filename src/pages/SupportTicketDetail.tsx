@@ -21,7 +21,6 @@ import { toast } from "sonner";
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 const SupportTicketDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -99,7 +98,6 @@ const SupportTicketDetail = () => {
                 <ArrowLeft size={18} />
               </Button>
             </Link>
-            <Breadcrumbs />
           </div>
 
           <div className="bg-background border border-border/50 rounded-[3rem] overflow-hidden shadow-sm shadow-primary/5 flex flex-col">
