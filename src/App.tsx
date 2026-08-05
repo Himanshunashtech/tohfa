@@ -9,6 +9,7 @@ import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { AdminDataProvider } from "@/context/AdminDataContext";
+import { BrowsingHistoryProvider } from "@/context/BrowsingHistoryContext";
 import { Navigate } from "react-router-dom";
 import Index from "./pages/Index.tsx";
 import Shop from "./pages/Shop.tsx";
@@ -38,6 +39,8 @@ import FAQ from "./pages/FAQ.tsx";
 import Support from "./pages/Support.tsx";
 import { PrivacyPolicy, TermsOfService, RefundPolicy, ShippingPolicy } from "./pages/Legal.tsx";
 import { Careers, Sustainability, Artisans, BulkGifting, Ethics } from "./pages/FooterPages.tsx";
+import Campaign from "./pages/Campaign.tsx";
+import BrowsingHistory from "./pages/BrowsingHistory.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 
 import AdminLayout from "./components/admin/AdminLayout";
@@ -61,6 +64,7 @@ import AdminCMS from "./pages/admin/CMS";
 import AdminInventory from "./pages/admin/Inventory";
 import AdminSupport from "./pages/admin/Support";
 import AdminCollections from "./pages/admin/Collections";
+import AdminCategories from "./pages/admin/Categories";
 import ArtisanDetail from "./pages/ArtisanDetail";
 import PortalView from "./pages/PortalView";
 import Maintenance from "./pages/Maintenance.tsx";
@@ -111,6 +115,7 @@ const AnimatedRoutes = () => {
           <Route path="/occasions" element={<Occasions />} />
           <Route path="/gift-guide" element={<GiftGuide />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/history" element={<BrowsingHistory />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/track/:id" element={<OrderTracking />} />
           <Route path="/corporate" element={<CorporateGifting />} />
@@ -125,6 +130,7 @@ const AnimatedRoutes = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/rewards" element={<Rewards />} />
           <Route path="/about" element={<About />} />
+          <Route path="/campaign" element={<Campaign />} />
           <Route path="/guide" element={<QuickGuide />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
@@ -148,6 +154,7 @@ const AnimatedRoutes = () => {
             <Route path="orders" element={<AdminOrders />} />
             <Route path="orders/:id" element={<AdminOrderDetail />} />
             <Route path="products" element={<AdminProducts />} />
+            <Route path="categories" element={<AdminCategories />} />
             <Route path="products/new" element={<AdminProductForm />} />
             <Route path="products/:id" element={<AdminProductForm />} />
             <Route path="inventory" element={<AdminInventory />} />
@@ -185,16 +192,18 @@ const App = () => (
       <AuthProvider>
         <CartProvider>
           <WishlistProvider>
-            <TooltipProvider>
-              <AdminDataProvider>
-                <BrowserRouter>
-                  <Toaster />
-                  <Sonner />
-                  <GiftingHeartbeat />
-                  <AnimatedRoutes />
-                </BrowserRouter>
-              </AdminDataProvider>
-            </TooltipProvider>
+            <BrowsingHistoryProvider>
+              <TooltipProvider>
+                <AdminDataProvider>
+                  <BrowserRouter>
+                    <Toaster />
+                    <Sonner />
+                    <GiftingHeartbeat />
+                    <AnimatedRoutes />
+                  </BrowserRouter>
+                </AdminDataProvider>
+              </TooltipProvider>
+            </BrowsingHistoryProvider>
           </WishlistProvider>
         </CartProvider>
       </AuthProvider>

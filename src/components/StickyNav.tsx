@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, ShoppingBag, User, Menu, X, Heart, LogOut, LayoutDashboard, Gift } from "lucide-react";
+import { Search, ShoppingBag, User, Menu, X, Heart, LogOut, LayoutDashboard, Gift, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
@@ -9,13 +9,15 @@ import { useAdminData } from "@/context/AdminDataContext";
 import CartDrawer from "@/components/CartDrawer";
 
 const StickyNav = () => {
-  const { collections } = useAdminData();
+  const { collections, filterOptions } = useAdminData();
+  const { categories } = filterOptions;
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [trendingSearch, setTrendingSearch] = useState(["Artisan Candles", "Kintsugi", "Gift Boxes", "Leather Goods", "Silk"]);
+  const [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
   const { totalItems } = useCart();
   const { totalItems: wishlistCount } = useWishlist();
   const { user, logout } = useAuth();
@@ -33,6 +35,7 @@ const StickyNav = () => {
     { label: "Shop", href: "/shop" },
     { label: "Collections", href: "/collections" },
     { label: "Occasions", href: "/occasions" },
+    { label: "Our Campaign", href: "/campaign" },
     { label: "Gift Assistant", href: "/gift-assistant" },
     { label: "Corporate", href: "/corporate" },
   ];
@@ -239,15 +242,72 @@ const StickyNav = () => {
             <ul className="flex flex-col gap-4 px-6 py-6 border-t border-border/50">
               {links.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
-                    className="text-base font-medium text-foreground hover:text-primary transition-colors"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
+                  {link.label === "Shop" ? (
+                    <div className="space-y-4">
+                      <Link
+                        to={link.href}
+                        className="text-base font-medium text-foreground hover:text-primary transition-colors flex items-center justify-between"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                      
+                      <div className="pl-4 space-y-3 border-l-2 border-primary/10">
+                        <button 
+                          onClick={() => setMobileCategoriesOpen(!mobileCategoriesOpen)}
+                          className="flex items-center justify-between w-full text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          Shop by Category
+                          <motion.div
+                            animate={{ rotate: mobileCategoriesOpen ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown size={14} />
+                          </motion.div>
+                        </button>
+                        
+                        <AnimatePresence>
+                          {mobileCategoriesOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="flex flex-col gap-3 py-2 pr-2">
+                                {categories.map((cat) => (
+                                  <Link
+                                    key={cat}
+                                    to={`/shop?category=${encodeURIComponent(cat)}`}
+                                    className="flex items-center justify-between group/cat py-1"
+                                    onClick={() => {
+                                      setMobileOpen(false);
+                                      setMobileCategoriesOpen(false);
+                                    }}
+                                  >
+                                    <span className="text-sm font-medium text-foreground/70 group-hover/cat:text-primary transition-colors">{cat}</span>
+                                    <div className="w-1 h-1 rounded-full bg-primary/20 group-hover/cat:bg-primary transition-colors" />
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className="text-base font-medium text-foreground hover:text-primary transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
+              
+              <li className="pt-2"></li>
               <li className="pt-4 border-t border-border/50">
                 {user ? (
                   <div className="space-y-4">

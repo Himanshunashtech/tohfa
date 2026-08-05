@@ -56,6 +56,30 @@ export const supabaseApi = createApi({
       },
       providesTags: ['Categories'],
     }),
+    createCategory: builder.mutation<null, Database['public']['Tables']['categories']['Insert']>({
+      queryFn: async (category) => {
+        const { error } = await supabase.from('categories').insert(category);
+        if (error) return { error };
+        return { data: null };
+      },
+      invalidatesTags: ['Categories'],
+    }),
+    updateCategory: builder.mutation<null, { id: string } & Database['public']['Tables']['categories']['Update']>({
+      queryFn: async ({ id, ...patch }) => {
+        const { error } = await supabase.from('categories').update(patch).eq('id', id);
+        if (error) return { error };
+        return { data: null };
+      },
+      invalidatesTags: ['Categories'],
+    }),
+    deleteCategory: builder.mutation<null, string>({
+      queryFn: async (id) => {
+        const { error } = await supabase.from('categories').delete().eq('id', id);
+        if (error) return { error };
+        return { data: null };
+      },
+      invalidatesTags: ['Categories'],
+    }),
 
     // ARTISANS
     getArtisans: builder.query<Database['public']['Tables']['artisans']['Row'][], void>({
@@ -653,6 +677,9 @@ export const {
   useGetProductBySlugQuery,
   useUpdateProductMutation,
   useGetCategoriesQuery,
+  useCreateCategoryMutation,
+  useUpdateCategoryMutation,
+  useDeleteCategoryMutation,
   useGetArtisansQuery,
   useGetOrdersQuery,
   useUpdateOrderMutation,

@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
 import { useAdminData } from "@/context/AdminDataContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  LayoutDashboard, 
-  ShoppingBag, 
-  Users, 
-  BarChart3, 
-  Settings, 
-  LogOut, 
-  Menu, 
-  X, 
-  Bell, 
+import {
+  LayoutDashboard,
+  ShoppingBag,
+  Users,
+  BarChart3,
+  Settings,
+  LogOut,
+  Menu,
+  X,
+  Bell,
   Search,
   Package,
   Box,
@@ -25,17 +25,18 @@ import {
   Globe,
   Truck,
   MapPin,
-  HelpCircle
+  HelpCircle,
+  Layers
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuLabel, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 
 import { AdminAgent } from "./AdminAgent";
@@ -61,6 +62,7 @@ const AdminLayout = () => {
   const menuItems = [
     { name: "Overview", icon: LayoutDashboard, path: "/admin" },
     { name: "Product Catalog", icon: Package, path: "/admin/products" },
+    { name: "Categories", icon: Layers, path: "/admin/categories" },
     { name: "Collections", icon: LayoutDashboard, path: "/admin/collections" },
     { name: "Stock Inventory", icon: Box, path: "/admin/inventory" },
     { name: "Order Management", icon: ShoppingBag, path: "/admin/orders" },
@@ -100,11 +102,10 @@ const AdminLayout = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-2xl transition-all ${
-                    isActive 
-                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 font-semibold" 
+                  className={`flex items-center gap-3 px-4 py-3 rounded-2xl transition-all ${isActive
+                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 font-semibold"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
+                    }`}
                 >
                   <item.icon size={18} />
                   <span>{item.name}</span>
@@ -128,13 +129,13 @@ const AdminLayout = () => {
         {/* Top Header */}
         <header className="h-20 bg-background/50 backdrop-blur-xl border-b border-border/50 flex items-center justify-between px-8 shrink-0">
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setSidebarOpen(!isSidebarOpen)}
               className="p-2 rounded-xl hover:bg-muted lg:hidden"
             >
               <Menu size={20} />
             </button>
-            <div 
+            <div
               className="relative hidden md:block cursor-pointer group"
               onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
             >
@@ -149,17 +150,17 @@ const AdminLayout = () => {
           </div>
 
           <div className="flex items-center gap-6">
-             <button className="relative p-2 text-muted-foreground hover:text-foreground">
-               <Bell size={20} />
-               <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" />
-             </button>
-             <div className="flex items-center gap-3 pl-6 border-l border-border/50">
-               <div className="text-right">
-                 <p className="text-xs font-bold leading-none">{user?.name || "Admin User"}</p>
-                 <p className="text-[10px] text-muted-foreground uppercase tracking-widest mt-1">Super Admin</p>
-               </div>
-               <div className="w-10 h-10 rounded-full bg-muted border-2 border-primary/20" />
-             </div>
+            <button className="relative p-2 text-muted-foreground hover:text-foreground">
+              <Bell size={20} />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" />
+            </button>
+            <div className="flex items-center gap-3 pl-6 border-l border-border/50">
+              <div className="text-right">
+                <p className="text-xs font-bold leading-none">{user?.name || "Admin User"}</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-widest mt-1">Super Admin</p>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-muted border-2 border-primary/20" />
+            </div>
           </div>
         </header>
 

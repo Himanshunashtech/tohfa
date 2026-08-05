@@ -11,6 +11,8 @@ import PageTransition from "@/components/PageTransition";
 import { ProductGridSkeleton } from "@/components/SkeletonLoader";
 import ProductCard from "@/components/ProductCard";
 import { Magnetic } from "@/components/Magnetic";
+import CraftShowcase from "@/components/CraftShowcase";
+
 import {
   Select,
   SelectContent,
@@ -93,7 +95,7 @@ const Shop = () => {
         break;
     }
     return list;
-  }, [category, occasion, recipient, sort, maxPrice]);
+  }, [adminProducts, category, occasion, recipient, vibe, searchQuery, maxPrice, sort, showOutOfStock]);
 
   const activeFilterCount = [category, occasion, recipient, vibe].filter(f => f !== "All").length + (maxPrice < 500 ? 1 : 0);
 
@@ -236,12 +238,41 @@ const Shop = () => {
               )}
             </AnimatePresence>
 
-            {/* Product Grid */}
-            <div className="flex-1">
+            {/* Product Grid / Categorized View */}
+            <div className="flex-1 min-w-0">
+              {/* Top Category Bar */}
+              <div className="mb-8 overflow-x-auto no-scrollbar pb-2">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => updateFilter("category", "All")}
+                    className={`shrink-0 px-6 py-2.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                      category === "All"
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                        : "bg-background border border-border/50 text-muted-foreground hover:border-primary/30"
+                    }`}
+                  >
+                    All Items
+                  </button>
+                  {categories.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => updateFilter("category", cat)}
+                      className={`shrink-0 px-6 py-2.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                        category === cat
+                          ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                          : "bg-background border border-border/50 text-muted-foreground hover:border-primary/30"
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {isLoading ? (
-                <ProductGridSkeleton count={8} />
+                <ProductGridSkeleton count={12} />
               ) : filtered.length > 0 ? (
-                <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12 md:gap-y-16">
                   {filtered.map((p, i) => (
                     <ProductCard key={p.id} product={p} index={i} />
                   ))}

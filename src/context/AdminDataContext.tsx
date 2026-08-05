@@ -5,6 +5,9 @@ import {
   useGetOrdersQuery,
   useGetArtisansQuery,
   useGetCategoriesQuery,
+  useCreateCategoryMutation,
+  useUpdateCategoryMutation,
+  useDeleteCategoryMutation,
   useGetPortalsQuery,
   useGetInventoryLogsQuery,
   useGetCustomersQuery,
@@ -231,6 +234,9 @@ interface AdminDataContextType {
   addProductToCollection: (collectionId: string, productId: string) => Promise<void>;
   removeProductFromCollection: (collectionId: string, productId: string) => Promise<void>;
   updateCollectionProductOrder: (collectionId: string, productId: string, sortOrder: number) => Promise<void>;
+  addCategory: (category: any) => Promise<void>;
+  updateCategory: (id: string, data: any) => Promise<void>;
+  deleteCategory: (id: string) => Promise<void>;
   getCustomerPointsHistory: (profileId: string) => Promise<any[]>;
   syncData: () => void;
   // Dynamic Filter Lists
@@ -320,7 +326,9 @@ export const AdminDataProvider = ({ children }: { children: ReactNode }) => {
   const [addProdToColl] = useAddProductToCollectionMutation();
   const [remProdFromColl] = useRemoveProductFromCollectionMutation();
   const [updProdOrder] = useUpdateCollectionProductOrderMutation();
-  const [createRev] = useCreateReviewMutation();
+  const [updateCat] = useUpdateCategoryMutation();
+  const [createCat] = useCreateCategoryMutation();
+  const [delCat] = useDeleteCategoryMutation();
   const [awardPointsMutation] = useAwardPointsMutation();
   const [syncInventoryMutation] = useSyncArtisanInventoryMutation();
   const [addProductMutation] = useAddProductWithLogMutation();
@@ -412,8 +420,9 @@ export const AdminDataProvider = ({ children }: { children: ReactNode }) => {
     artisanId: p.artisan_id,
     hasPersonalization: p.has_personalization,
     personalization_config: p.personalization_config,
-    artisanName: p.artisan?.name || "Global"
-  }));
+    artisanName: p.artisan?.name || "Global",
+    sortOrder: p.sort_order || 0
+  })).sort((a, b) => a.sortOrder - b.sortOrder);
 
   const products = allMappedProducts.filter(p => p.active !== false);
   const trashProducts = allMappedProducts.filter(p => p.active === false);
@@ -610,6 +619,7 @@ export const AdminDataProvider = ({ children }: { children: ReactNode }) => {
     if (data.active !== undefined) mapped.active = data.active;
     if (data.hasPersonalization !== undefined) mapped.has_personalization = data.hasPersonalization;
     if (data.personalization_config !== undefined) mapped.personalization_config = data.personalization_config;
+    if (data.sortOrder !== undefined) mapped.sort_order = data.sortOrder;
     
     console.log("[Persistence Fix] Mapped Data for Supabase:", mapped);
     return mapped;
@@ -935,6 +945,33 @@ export const AdminDataProvider = ({ children }: { children: ReactNode }) => {
       toast.success("Portal deleted successfully");
     } catch (e) {
       toast.error("Failed to delete portal");
+    }
+  };
+
+  const addCategory = async (c: any) => {
+    try {
+      await createCat(c).unwrap();
+      toast.success("Category created successfully");
+    } catch (e) {
+      toast.error("Failed to create category");
+    }
+  };
+
+  const updateCategory = async (id: string, patch: any) => {
+    try {
+      await updateCat({ id, ...patch }).unwrap();
+      toast.success("Category updated successfully");
+    } catch (e) {
+      toast.error("Failed to update category");
+    }
+  };
+
+  const deleteCategory = async (id: string) => {
+    try {
+      await delCat(id).unwrap();
+      toast.success("Category removed successfully");
+    } catch (e) {
+      toast.error("Failed to delete category");
     }
   };
 
@@ -1359,6 +1396,9 @@ export const AdminDataProvider = ({ children }: { children: ReactNode }) => {
     addProductToCollection,
     removeProductFromCollection,
     updateCollectionProductOrder,
+    addCategory,
+    updateCategory,
+    deleteCategory,
     updateLoyaltySettings: updateLoyaltySettingsMapped,
     deleteReview,
     moderateReview,

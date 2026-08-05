@@ -5,7 +5,7 @@ import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Mail, Lock, ArrowRight, Github } from "lucide-react";
+import { Mail, Lock, ArrowRight } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import StickyNav from "@/components/StickyNav";
 import FooterSection from "@/components/FooterSection";
@@ -113,22 +113,7 @@ const Login = () => {
               </Button>
             </form>
 
-            <div className="relative my-8">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-border/50"></span>
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-transparent px-2 text-muted-foreground">Or continue with</span>
-              </div>
-            </div>
 
-            <Button
-              variant="outline"
-              className="w-full h-12 rounded-xl border-border/50 bg-background/50 flex items-center justify-center gap-2 hover:bg-accent transition-colors"
-            >
-              <Github size={20} />
-              GitHub
-            </Button>
 
             <p className="mt-8 text-center text-sm text-muted-foreground">
               Don't have an account?{" "}

@@ -3,6 +3,7 @@ import { Bot, X, Send, Sparkles, Command, Zap, MessageSquare, ChevronRight } fro
 import { motion, AnimatePresence } from 'framer-motion';
 import { eventBus } from '@/lib/event-bus';
 import { useAdminData } from '@/context/AdminDataContext';
+import { toast } from 'sonner';
 
 interface Message {
   id: string;
@@ -24,8 +25,9 @@ export const AdminAgent = () => {
     }
   ]);
   const [input, setInput] = useState('');
+  const [isAutonomous, setIsAutonomous] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
-  const { products, orders } = useAdminData();
+  const { products, orders, globalRestock, addCampaign } = useAdminData();
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -42,25 +44,55 @@ export const AdminAgent = () => {
     setMessages(prev => [...prev, userMsg]);
     setInput('');
 
-    // Simulated Agent Logic
-    setTimeout(() => {
-      let agentResponse = "I'm processing that request for you. I'll need to check the inventory logs.";
+    // Simulated Action Execution
+    setTimeout(async () => {
+      let agentResponse = "I'm processing that request for you. Checking logs...";
+      let actions = undefined;
       
-      if (input.toLowerCase().includes('order')) {
-        agentResponse = `You have ${orders.length} total orders. ${orders.filter(o => o.status === 'Processing').length} are currently processing. Shall I prepare a logistics summary?`;
-      } else if (input.toLowerCase().includes('stock') || input.toLowerCase().includes('inventory')) {
+      const lowerInput = input.toLowerCase();
+      
+      if (lowerInput.includes('order')) {
+        const processing = orders.filter(o => o.status === 'Processing').length;
+        agentResponse = `You have ${orders.length} total orders. ${processing} are currently processing. I can auto-route logistics.`;
+        actions = ["Auto-Route Shipping", "Summary Report"];
+      } else if (lowerInput.includes('stock') || lowerInput.includes('inventory') || lowerInput.includes('restock')) {
         const lowStock = products.filter(p => p.stock < 10);
-        agentResponse = `I found ${lowStock.length} items with low stock. Would you like me to notify the artisans?`;
+        
+        if (lowerInput.includes('restock') || isAutonomous) {
+           agentResponse = `Autonomous System engaged. Triggering global restock for ${lowStock.length} critical items.`;
+           if (globalRestock) {
+             try {
+               await globalRestock();
+               agentResponse = `Successfully restocked ${lowStock.length} items to healthy capacity.`;
+               eventBus.emit('app:toast', { message: 'Autonomous Restock Complete', type: 'success' });
+             } catch(e) {
+               agentResponse = "Restock command failed. Manual override required.";
+             }
+           }
+        } else {
+           agentResponse = `I found ${lowStock.length} items with low stock. Want me to trigger a Global Restock?`;
+           actions = ["Execute Restock"];
+        }
+      } else if (lowerInput.includes('campaign') || lowerInput.includes('market')) {
+        if (addCampaign) {
+           await addCampaign({ name: "AI Flash Sale", desc: "Autonomous campaign to clear slow-moving inventory." });
+           agentResponse = `I have autonomously launched an 'AI Flash Sale' campaign based on slow-moving inventory velocity.`;
+           eventBus.emit('app:toast', { message: 'AI Campaign Deployed', type: 'success' });
+        }
+      } else if (lowerInput.includes('autonomous') || lowerInput.includes('autopilot')) {
+        setIsAutonomous(!isAutonomous);
+        agentResponse = `Autonomous Mode is now ${!isAutonomous ? 'ENABLED' : 'DISABLED'}. I will now self-heal inventory and pricing.`;
+        toast(`Autopilot ${!isAutonomous ? 'Active' : 'Disabled'}`);
       }
 
       setMessages(prev => [...prev, {
         id: (Date.now() + 1).toString(),
         role: 'agent',
         content: agentResponse,
+        actions,
         timestamp: new Date()
       }]);
       
-      eventBus.emit('app:toast', { message: 'Agent processing complete', type: 'success' });
     }, 1000);
   };
 

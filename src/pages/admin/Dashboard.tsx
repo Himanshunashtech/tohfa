@@ -12,7 +12,8 @@ import {
   AlertCircle,
   MapPin,
   Globe,
-  Plus
+  Plus,
+  Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -97,6 +98,47 @@ const Dashboard = () => {
       <div>
         <h1 className="text-3xl font-heading font-bold mb-2">Welcome Back, Admin</h1>
         <p className="text-muted-foreground">Here's what's happening in TofhaVerse today.</p>
+      </div>
+
+      {/* Autonomous Operations Core */}
+      <div className="bg-foreground text-background p-8 rounded-[3rem] relative overflow-hidden shadow-2xl">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+             <div className="flex items-center gap-3 mb-2">
+                <Zap className="text-primary animate-pulse" size={24} />
+                <h2 className="text-2xl font-bold font-heading">TofhaVerse Autonomous Engine</h2>
+             </div>
+             <p className="text-muted-foreground max-w-xl">
+               The AI engine is currently monitoring global inventory, optimizing dynamic pricing models, and auto-routing logistics based on real-time demand.
+             </p>
+             <div className="flex gap-6 mt-6">
+                <div>
+                   <p className="text-3xl font-bold text-primary">142</p>
+                   <p className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground tracking-tighter">Automated Decisions</p>
+                </div>
+                <div>
+                   <p className="text-3xl font-bold text-primary">12ms</p>
+                   <p className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground tracking-tighter">Response Latency</p>
+                </div>
+             </div>
+          </div>
+          <div className="shrink-0">
+             <div className="bg-background/10 backdrop-blur-md border border-white/10 p-6 rounded-3xl text-center shadow-inner">
+                <p className="text-sm font-bold mb-4 tracking-wide uppercase text-white">Global Autopilot</p>
+                <button 
+                  onClick={() => {
+                    const event = new CustomEvent('sonner-toast', { detail: { type: 'success', message: 'Autopilot engaged. System is self-healing.' }});
+                    window.dispatchEvent(event);
+                  }}
+                  className="w-32 h-14 bg-primary hover:bg-primary/90 text-white rounded-full font-bold transition-all relative overflow-hidden group shadow-[0_0_20px_rgba(var(--primary),0.5)]"
+                >
+                   <motion.div animate={{ x: ["-100%", "100%"]}} transition={{ repeat: Infinity, duration: 2 }} className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                   ENGAGE
+                </button>
+             </div>
+          </div>
+        </div>
       </div>
 
       {/* Stats Grid */}

@@ -11,6 +11,8 @@ import FooterSection from "@/components/FooterSection";
 import PageTransition from "@/components/PageTransition";
 import ArtisanSpotlight from "@/components/ArtisanSpotlight";
 import LogisticsShowcase from "@/components/LogisticsShowcase";
+import RecentlyViewed from "@/components/RecentlyViewed";
+
 const Index = () => {
   return (
     <PageTransition>
@@ -26,6 +28,7 @@ const Index = () => {
         <Testimonials />
         {/* <GiftFinder /> */}
         <Sustainability />
+        <RecentlyViewed />
       </main>
       <FooterSection />
     </PageTransition>

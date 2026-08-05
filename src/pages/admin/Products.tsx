@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Reorder } from "framer-motion";
 import { 
   Search, 
   Plus, 
@@ -37,7 +37,8 @@ const AdminProducts = () => {
     globalRestock, 
     bulkDeleteProducts, 
     bulkRestockProducts, 
-    currentArtisan 
+    currentArtisan,
+    updateProduct
   } = useAdminData();
   const [search, setSearch] = useState("");
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -54,11 +55,30 @@ const AdminProducts = () => {
     p.category.toLowerCase().includes(search.toLowerCase())
   );
 
+  const [orderedProducts, setOrderedProducts] = useState(filteredProducts);
+
+  useEffect(() => {
+    setOrderedProducts(filteredProducts);
+  }, [filteredProducts]);
+
+  const handleReorder = (newOrder: any[]) => {
+    setOrderedProducts(newOrder);
+  };
+
+  const handleDragEnd = () => {
+    orderedProducts.forEach((product, index) => {
+      // Re-assign sort_order to backend only after dragging stops
+      if (product.sortOrder !== index) {
+        updateProduct(product.id, { sortOrder: index });
+      }
+    });
+  };
+
   const toggleSelectAll = () => {
-    if (selectedIds.length === filteredProducts.length) {
+    if (selectedIds.length === orderedProducts.length) {
       setSelectedIds([]);
     } else {
-      setSelectedIds(filteredProducts.map(p => p.id));
+      setSelectedIds(orderedProducts.map(p => p.id));
     }
   };
 
@@ -139,7 +159,7 @@ const AdminProducts = () => {
             onClick={toggleSelectAll}
             className="rounded-xl h-11 px-4 flex items-center gap-2 hover:bg-muted"
           >
-            {selectedIds.length === filteredProducts.length && filteredProducts.length > 0 ? (
+            {selectedIds.length === orderedProducts.length && orderedProducts.length > 0 ? (
                <CheckSquare size={20} className="text-primary" />
             ) : (
                <Square size={20} className="text-muted-foreground" />
@@ -163,20 +183,27 @@ const AdminProducts = () => {
           </Button>
           <div className="h-6 w-[1px] bg-border/50 hidden md:block" />
           <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest hidden md:block">
-            {filteredProducts.length} Products
+            {orderedProducts.length} Products
           </p>
         </div>
       </div>
 
       {/* Product Grid (Admin View) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProducts.map((p, i) => (
-          <motion.div
+      <Reorder.Group 
+        axis="y"
+        values={orderedProducts}
+        onReorder={handleReorder}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        {orderedProducts.map((p, i) => (
+          <Reorder.Item
             key={p.id}
+            value={p}
+            onDragEnd={handleDragEnd}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.05 }}
-            className={`bg-background rounded-[2.5rem] border ${selectedIds.includes(p.id) ? "border-primary ring-2 ring-primary/20" : "border-border/50"} shadow-sm overflow-hidden group relative`}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className={`bg-background rounded-[2.5rem] border ${selectedIds.includes(p.id) ? "border-primary ring-2 ring-primary/20" : "border-border/50"} shadow-sm overflow-hidden group relative cursor-grab active:cursor-grabbing`}
           >
             {/* Selection Checkbox */}
             <button 
@@ -288,9 +315,9 @@ const AdminProducts = () => {
                   </div>
                </div>
             </div>
-          </motion.div>
+          </Reorder.Item>
         ))}
-      </div>
+      </Reorder.Group>
 
       {/* Bulk Action Bar */}
       <AnimatePresence>

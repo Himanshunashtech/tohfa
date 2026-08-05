@@ -81,6 +81,7 @@ const FooterSection = () => {
             <h4 className="text-xs font-semibold tracking-widest uppercase text-primary-foreground/40 mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
               <li><Link to="/about" className="hover:text-primary-foreground transition-colors">Our Story</Link></li>
+              <li><Link to="/campaign" className="hover:text-primary-foreground transition-colors">Our Campaign</Link></li>
               <li><Link to="/artisans" className="hover:text-primary-foreground transition-colors">The Artisans</Link></li>
               <li><Link to="/sustainability" className="hover:text-primary-foreground transition-colors">Sustainability</Link></li>
               <li><Link to="/ethics" className="hover:text-primary-foreground transition-colors">Ethics</Link></li>
@@ -95,6 +96,7 @@ const FooterSection = () => {
               <li><Link to="/faq" className="hover:text-primary-foreground transition-colors">Safety & Trust</Link></li>
               <li><Link to="/shipping-policy" className="hover:text-primary-foreground transition-colors">Shipping Info</Link></li>
               <li><Link to="/refund-policy" className="hover:text-primary-foreground transition-colors">Returns & Refunds</Link></li>
+              <li><Link to="/history" className="hover:text-primary-foreground transition-colors">Recently Viewed</Link></li>
             </ul>
           </div>
           <div>

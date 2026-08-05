@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowRight, Star, Minus, Plus, ShoppingBag, Truck, Leaf, RotateCcw, Edit3, X, Check, Trash2, Sparkles, ShieldCheck, Package } from "lucide-react";
@@ -7,6 +7,7 @@ import { useAdminData } from "@/context/AdminDataContext";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import WishlistButton from "@/components/WishlistButton";
+import { useBrowsingHistory } from "@/context/BrowsingHistoryContext";
 import StickyNav from "@/components/StickyNav";
 import PageTransition from "@/components/PageTransition";
 import FooterSection from "@/components/FooterSection";
@@ -27,6 +28,13 @@ const ProductDetail = () => {
   const { user } = useAuth();
   const product = adminProducts.find(p => p.id === id || p.slug === id);
   const { addItem } = useCart();
+  const { addToHistory } = useBrowsingHistory();
+  
+  useEffect(() => {
+    if (product) {
+      addToHistory(product.id);
+    }
+  }, [product?.id, addToHistory]);
   
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -56,6 +64,12 @@ const ProductDetail = () => {
   }, [product]);
 
   const isPersonalizable = config?.supportsMonogramming || config?.supportsVideoMessage || config?.supportsEngraving;
+
+  // Autonomous Cross-Sells (Discovery Intelligence)
+  const related = useMemo(() => {
+    if (!product) return [];
+    return getSmartCrossSells(product, adminProducts);
+  }, [product, adminProducts]);
 
   if (!product) {
     return (
@@ -93,9 +107,6 @@ const ProductDetail = () => {
     setAppliedPersonalization(null);
     setPersonalization({ monogram: "", videoMessage: false, waxSeal: false });
   };
-
-  // Autonomous Cross-Sells (Discovery Intelligence)
-  const related = useMemo(() => getSmartCrossSells(product, adminProducts), [product, adminProducts]);
 
   return (
     <PageTransition title={product.name} description={product.shortDesc}>
